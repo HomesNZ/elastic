@@ -118,7 +118,7 @@ func (s *PingService) DoC(ctx context.Context) (*PingResult, int, error) {
 		req.SetBasicAuth(basicAuthUsername, basicAuthPassword)
 	}
 	if prepareRequest != nil {
-		prepareRequest(req)
+		prepareRequest((*http.Request)(req))
 	}
 
 	var res *http.Response

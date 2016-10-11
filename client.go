@@ -789,7 +789,7 @@ func (c *Client) sniffNode(url string) []*conn {
 		req.SetBasicAuth(c.basicAuthUsername, c.basicAuthPassword)
 	}
 	if c.prepareRequest != nil {
-		c.prepareRequest(req)
+		c.prepareRequest((*http.Request)(req))
 	}
 	c.mu.RUnlock()
 
@@ -934,7 +934,7 @@ func (c *Client) healthcheck(timeout time.Duration, force bool) {
 				req.SetBasicAuth(basicAuthUsername, basicAuthPassword)
 			}
 			if c.prepareRequest != nil {
-				c.prepareRequest(req)
+				c.prepareRequest((*http.Request)(req))
 			}
 			res, err := c.c.Do((*http.Request)(req))
 			if err == nil {
@@ -1137,7 +1137,7 @@ func (c *Client) PerformRequestC(ctx context.Context, method, path string, param
 			req.SetBasicAuth(basicAuthUsername, basicAuthPassword)
 		}
 		if c.prepareRequest != nil {
-			c.prepareRequest(req)
+			c.prepareRequest((*http.Request)(req))
 		}
 
 		// Set body
