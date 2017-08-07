@@ -83,6 +83,7 @@ func (s *PingService) DoC(ctx context.Context) (*PingResult, int, error) {
 	basicAuth := s.client.basicAuth
 	basicAuthUsername := s.client.basicAuthUsername
 	basicAuthPassword := s.client.basicAuthPassword
+	prepareRequest := s.client.prepareRequest
 	s.client.mu.RUnlock()
 
 	url_ := s.url + "/"
@@ -113,6 +114,9 @@ func (s *PingService) DoC(ctx context.Context) (*PingResult, int, error) {
 
 	if basicAuth {
 		req.SetBasicAuth(basicAuthUsername, basicAuthPassword)
+	}
+	if prepareRequest != nil {
+		prepareRequest((*http.Request)(req))
 	}
 
 	var res *http.Response
