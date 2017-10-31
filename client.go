@@ -19,9 +19,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/HomesNZ/elastic/config"
 	"github.com/pkg/errors"
-
-	"gopkg.in/olivere/elastic.v5/config"
 )
 
 const (

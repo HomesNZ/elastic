@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"gopkg.in/olivere/elastic.v5/uritemplates"
+	"github.com/HomesNZ/elastic/uritemplates"
 )
 
 // IndicesPutTemplateService creates or updates index mappings.
